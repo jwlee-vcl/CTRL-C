@@ -8,3 +8,4 @@ opencv-python
 matplotlib
 yacs
 tensorboard
+pylsd-nova
