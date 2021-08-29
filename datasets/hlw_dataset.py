@@ -216,6 +216,7 @@ def make_transform():
     ]) 
 
 def build_hlw(image_set, cfg):
+    assert image is not None, print("HLW dataset only support for validation")
     
     root = '/data/public/rw/hlw/images/'
 

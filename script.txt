@@ -1,0 +1,25 @@
+# Multi GPU
+python -m torch.distributed.launch --nproc_per_node=4 --use_env main.py --config-file 'config-files/gptran.yaml' --opts OUTPUT_DIR 'logs'
+
+# Single GPU (and debugging)
+python main.py --config-file 'config-files/gptran.yaml' --opts OUTPUT_DIR 'logs'
+
+# Test
+python test.py --opts OUTPUT_DIR 'outputs'
+
+python test_hlw.py --opts OUTPUT_DIR 'outputs'
+
+python test_sun360.py --opts OUTPUT_DIR 'outputs'
+
+python test_yud.py --opts OUTPUT_DIR 'outputs'
+
+python test_ecd.py --opts OUTPUT_DIR 'outputs'
+
+python test_kitti.py --opts OUTPUT_DIR 'outputs'
+
+# Test visualization
+python test_vis.py --opts OUTPUT_DIR 'outputs'
+
+python test_vis_sun360.py --opts OUTPUT_DIR 'outputs'
+
+python test_vis_hlw.py --opts OUTPUT_DIR 'outputs'

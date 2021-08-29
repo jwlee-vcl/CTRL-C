@@ -1,4 +1,3 @@
-# Copyright (c) Facebook, Inc. and its affiliates. All Rights Reserved
 import numpy as np
 import torch
 import torch.nn.functional as F
@@ -12,7 +11,7 @@ from .backbone import build_backbone
 from .transformer import build_transformer
 
 
-class GPTran(nn.Module):    
+class CTRLC(nn.Module):
     def __init__(self, backbone, transformer, num_queries, 
                  aux_loss=False, use_structure_tensor=True):
         """ Initializes the model.

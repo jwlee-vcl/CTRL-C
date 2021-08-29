@@ -15,7 +15,6 @@ MODELS:
     PRE_NORM: False
 
 LOSS:
-#   LOSSES: ['zvp','fovy','hl','consistency']
   LOSSES: ['zvp','fovy','hl', 'vline_labels', 'hline_labels']
   AUX_LOSS: True
   LINE_POS_ANGLE: 88.0
@@ -25,7 +24,6 @@ LOSS:
     loss_zvp: 1.0 
     loss_fovy: 1.0 
     loss_hl: 1.0 
-#     loss_consistency: 1.0 
     loss_vline_ce: 1.0 
     loss_hline_ce: 1.0 
     
@@ -40,9 +38,9 @@ DATASETS:
 SOLVER:
   LR: 0.0001
   LR_BACKBONE: 0.0001
-  BATCH_SIZE: 56
+  BATCH_SIZE: 48
   WEIGHT_DECAY: 0.0001
-  EPOCHS: 50
+  EPOCHS: 30
   LR_DROP: 20
   CLIP_MAX_NORM: 0.1
   
