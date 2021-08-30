@@ -13,7 +13,7 @@ from torch.utils.tensorboard import SummaryWriter
 
 import datasets
 import util.misc as utils
-from datasets import build_dataset
+from datasets import build_gsv_dataset, build_sun360_dataset
 from engine import evaluate, train_one_epoch
 from models import build_model
 from config import cfg
@@ -25,6 +25,7 @@ def get_args_parser():
                         help="path to config file",
                         type=str,
                         default='config-files/gptran.yaml')
+    parser.add_argument('--dataset', default='GoogleStreetView')
     parser.add_argument("--opts",
                         help="Modify config options using the command-line",
                         default=None,
@@ -72,6 +73,14 @@ def main(cfg):
                                   weight_decay=cfg.SOLVER.WEIGHT_DECAY)
     lr_scheduler = torch.optim.lr_scheduler.StepLR(optimizer, cfg.SOLVER.LR_DROP)
     
+    if args.dataset == 'GoogleStreetView':
+        build_dataset = build_gsv_dataset
+    elif args.dataset == 'SUN360':
+        build_dataset = build_sun360_dataset
+    else:
+        print('Unrecognized dataset: {}'.format(args.dataset))
+        exit()
+
     dataset_train = build_dataset(image_set='train', cfg=cfg)
     dataset_val = build_dataset(image_set='val', cfg=cfg)
 

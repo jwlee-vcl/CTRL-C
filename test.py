@@ -20,7 +20,7 @@ from torch.utils.data import DataLoader
 
 import datasets
 import util.misc as utils
-from datasets import build_dataset
+from datasets import build_gsv_dataset, build_sun360_dataset, build_hlw_dataset
 from models import build_model
 from config import cfg
 
@@ -39,6 +39,7 @@ def get_args_parser():
                         help="path to config file",
                         type=str,
                         default='config-files/gptran.yaml')
+    parser.add_argument('--dataset', default='GoogleStreetView')
     parser.add_argument("--opts",
                         help="Modify config options using the command-line",
                         default=None,
@@ -131,6 +132,16 @@ def main(cfg):
     model, _ = build_model(cfg)
     model.to(device)
     
+    if args.dataset == 'GoogleStreetView':
+        build_dataset = build_gsv_dataset
+    elif args.dataset == 'SUN360':
+        build_dataset = build_sun360_dataset
+    elif args.dataset == 'HLW':
+        build_dataset = build_hlw_dataset
+    else:
+        print('Unrecognized dataset: {}'.format(args.dataset))
+        exit()
+
     dataset_test = build_dataset(image_set='test', cfg=cfg)
     sampler_test = torch.utils.data.SequentialSampler(dataset_test)
     data_loader_test = DataLoader(dataset_test, 1, sampler=sampler_test,
