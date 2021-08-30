@@ -1,6 +1,6 @@
 **CTRL-C**: Camera calibration TRansformer with Line-Classification
 ========
-This repository contains the official code and pretrained models for **CTRL-C** (**C**amera calibration **TR**ansformer with **L**ine-**C**lassification). Jinwoo Lee, Hyunsung Go, Hyunjoon Lee, Sunghyun Cho, Minhyuk Sung and Junho Kim.
+This repository contains the official code and pretrained models for **CTRL-C** (**C**amera calibration **TR**ansformer with **L**ine-**C**lassification). Jinwoo Lee, Hyunsung Go, Hyunjoon Lee, Sunghyun Cho, Minhyuk Sung and Junho Kim. ICCV 2021.
 
 Single image camera calibration is the task of estimating the camera parameters from a single input image, such as the vanishing points, focal length, and horizon line. In this work, we propose Camera calibration TRansformer with Line-Classification (CTRL-C), an end-to-end neural network-based approach to single image camera calibration, which directly estimates the camera parameters from an image and a set of line segments. Our network adopts the transformer architecture to capture the global structure of an image with multi-modal inputs in an end-to-end manner. We also propose an auxiliary task of line classification to train the network to extract the global geometric information from lines effectively. Our experiments demonstrate that CTRL-C outperforms the previous stateof-the-art methods on the Google Street View and SUN360 benchmark datasets.
 
@@ -54,6 +54,19 @@ python -m torch.distributed.launch --nproc_per_node=4 --use_env main.py --config
 python test.py --dataset 'GoogleStreetView' --opts OUTPUT_DIR 'outputs'
 ```
 
+
+
+## Citation
+
+If you use this code for your research, please cite our paper:
+```
+@InProceedings{Lee:2021:ICCV,
+    Title     = {{CTRL-C: Camera calibration TRansformer with Line-Classification}},
+    Author    = {Jinwoo Lee and Hyunsung Go and Hyunjoon Lee and Sunghyun Cho and Minhyuk Sung and Junho Kim},    
+    Booktitle = {Proceedings of the IEEE/CVF International Conference on Computer Vision (ICCV)},
+    Year      = {2021},
+}
+```
 
 ## Acknowledgments
 
