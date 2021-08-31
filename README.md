@@ -1,6 +1,6 @@
 **CTRL-C**: Camera calibration TRansformer with Line-Classification
 ========
-This repository contains the official code and pretrained models for **CTRL-C** (**C**amera calibration **TR**ansformer with **L**ine-**C**lassification). Jinwoo Lee, Hyunsung Go, Hyunjoon Lee, Sunghyun Cho, Minhyuk Sung and Junho Kim. ICCV 2021.
+This repository contains the official code and pretrained models for **CTRL-C** (**C**amera calibration **TR**ansformer with **L**ine-**C**lassification). Jinwoo Lee, Hyunsung Go, [Hyunjoon Lee](https://sites.google.com/site/eldercrow/), [Sunghyun Cho](https://www.scho.pe.kr/), [Minhyuk Sung](https://mhsung.github.io/) and [Junho Kim](https://home1.kookmin.ac.kr/~junho/). ICCV 2021.
 
 Single image camera calibration is the task of estimating the camera parameters from a single input image, such as the vanishing points, focal length, and horizon line. In this work, we propose Camera calibration TRansformer with Line-Classification (CTRL-C), an end-to-end neural network-based approach to single image camera calibration, which directly estimates the camera parameters from an image and a set of line segments. Our network adopts the transformer architecture to capture the global structure of an image with multi-modal inputs in an end-to-end manner. We also propose an auxiliary task of line classification to train the network to extract the global geometric information from lines effectively. Our experiments demonstrate that CTRL-C outperforms the previous stateof-the-art methods on the Google Street View and SUN360 benchmark datasets.
 
@@ -27,13 +27,12 @@ Single image camera calibration is the task of estimating the camera parameters 
    pip install -r requrements.txt
    ```
 
-   
 
 ## Training Datasets
 
 * [Google Street View dataset](https://drive.google.com/file/d/1opDR_j-9y4TY82ZscBb-xYAoMkTocAOp/view?usp=sharing)
 * [SUN360 dataset](https://vision.cs.princeton.edu/projects/2012/SUN360/data/)
-  * You need to preprocess dataset
+  * You need to preprocess the dataset
 
 ## Training
 
