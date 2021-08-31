@@ -54,8 +54,6 @@ python -m torch.distributed.launch --nproc_per_node=4 --use_env main.py --config
 python test.py --dataset 'GoogleStreetView' --opts OUTPUT_DIR 'outputs'
 ```
 
-
-
 ## Citation
 
 If you use this code for your research, please cite our paper:
@@ -67,6 +65,10 @@ If you use this code for your research, please cite our paper:
     Year      = {2021},
 }
 ```
+
+## License
+
+CTRL-C is released under the Apache 2.0 license. Please see the [LICENSE](https://github.com/jwlee-vcl/CTRL-C/blob/main/LICENSE) file for more information.
 
 ## Acknowledgments
 
