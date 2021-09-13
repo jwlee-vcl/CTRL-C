@@ -11,7 +11,7 @@ from .backbone import build_backbone
 from .transformer import build_transformer
 
 
-class CTRLC(nn.Module):
+class GPTran(nn.Module):
     def __init__(self, backbone, transformer, num_queries, 
                  aux_loss=False, use_structure_tensor=True):
         """ Initializes the model.

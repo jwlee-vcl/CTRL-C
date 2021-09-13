@@ -11,7 +11,7 @@ MODELS:
     HIDDEN_DIM: 256
     DROPOUT: 0.1
     NHEADS: 8
-    NUM_QUERIES: 2
+    NUM_QUERIES: 3
     PRE_NORM: False
 
 LOSS:

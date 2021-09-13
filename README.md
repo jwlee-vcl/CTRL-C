@@ -49,8 +49,15 @@ python -m torch.distributed.launch --nproc_per_node=4 --use_env main.py --config
 ```
 
 ## Evaluation
+
+Make `logs` folder and copy the downloaded checkpoint into `logs` folder
+
 ```
 python test.py --dataset 'GoogleStreetView' --opts OUTPUT_DIR 'outputs'
+```
+### single image inference
+```
+python test_image.py --sample 'sample.jpg' --opts OUTPUT_DIR 'outputs'
 ```
 
 ## Citation
