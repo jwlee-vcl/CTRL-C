@@ -15,24 +15,25 @@ Single image camera calibration is the task of estimating the camera parameters 
 
 ## Preparation
 
-1. Clone this repository
+1. Clone this repository.
 
-2. Setup environments
+2. Setup environments.
 
    ```
    conda create -n ctrlc python
    conda activate ctrlc
    conda install -c pytorch torchvision
    
-   pip install -r requrements.txt
+   pip install -r requirements.txt
    ```
 
 
 ## Training Datasets
 
 * [Google Street View dataset](https://drive.google.com/file/d/1o_831g-3NDnhR94MEwDS2MFvAwpGmVXN/view?usp=share_link)
+  * Download and unzip somewhere.
 * [SUN360 dataset](https://vision.cs.princeton.edu/projects/2012/SUN360/data/)
-  * You need to preprocess the dataset
+  * You need to preprocess the dataset.
 
 ## Training
 
@@ -50,11 +51,13 @@ python -m torch.distributed.launch --nproc_per_node=4 --use_env main.py --config
 
 ## Evaluation
 
-Make `logs` folder and copy the downloaded checkpoint into `logs` folder
+Make `logs` folder and copy the downloaded checkpoint into `logs` folder.
+Pass the unzipped path to the google street view dataset as `dataset_path`.
 
 ```
-python test.py --dataset 'GoogleStreetView' --opts OUTPUT_DIR 'outputs'
+python test.py --dataset 'GoogleStreetView' --dataset_path '../google_street_view_191210/manhattan/' --opts OUTPUT_DIR 'outputs'
 ```
+
 ### single image inference
 ```
 python test_image.py --sample 'sample.jpg' --opts OUTPUT_DIR 'outputs'

@@ -110,8 +110,8 @@ class GSVDataset(Dataset):
         with open(self.listpath, 'r') as csvfile:
             csvreader = csv.reader(csvfile)
             for row in csvreader:
-                img_filename  = self.basepath + row[0]
-                line_filename  = self.basepath + row[1]                
+                img_filename = osp.join(self.basepath, row[0])
+                line_filename = osp.join(self.basepath, row[1])
                 self.list_filename.append(row[0])
                 self.list_img_filename.append(img_filename)
                 self.list_line_filename.append(line_filename)
@@ -246,18 +246,15 @@ def make_transform():
         T.Normalize([0.485, 0.456, 0.406], [0.229, 0.224, 0.225])
     ]) 
 
-def build_gsv(image_set, cfg):
-    root = '/data/project/rw/google_street_view_191210/manhattan/'
-
+def build_gsv(image_set, cfg, basepath="/data/google_street_view_191210/manhattan/"):
     PATHS = {
         "train": 'gsv_train_20210313.csv',
         "val":   'gsv_val_20210313.csv',
         "test":  'gsv_test_20210313.csv',
     }
 
-    img_folder = root
     ann_file = PATHS[image_set]
-    dataset = GSVDataset(cfg, ann_file, img_folder, 
+    dataset = GSVDataset(cfg, ann_file, basepath, 
                          return_masks=cfg.MODELS.MASKS, transform=make_transform())
     return dataset
 

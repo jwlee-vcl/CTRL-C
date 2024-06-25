@@ -110,8 +110,8 @@ class SUN360Dataset(Dataset):
         with open(self.listpath, 'r') as csvfile:
             csvreader = csv.reader(csvfile)
             for row in csvreader:
-                img_filename  = self.basepath + row[0].replace('\\', '/')
-                line_filename  = self.basepath + row[1].replace('\\', '/')
+                img_filename  = osp.join(self.basepath, row[0].replace('\\', '/'))
+                line_filename  = osp.join(self.basepath, row[1].replace('\\', '/'))
                 self.list_filename.append(row[0])
                 self.list_img_filename.append(img_filename)
                 self.list_line_filename.append(line_filename)
@@ -239,18 +239,15 @@ def make_transform():
         T.Normalize([0.485, 0.456, 0.406], [0.229, 0.224, 0.225])
     ]) 
 
-def build_sun360(image_set, cfg):
-    root = '/data/project/rw/sun360_20200306/'
-
+def build_sun360(image_set, cfg, basepath="/data/sun360_20200306/"):
     PATHS = {
         "train": 'sun360_train_20210313.csv',
         "val":   'sun360_val_20210313.csv',
         "test":  'sun360_test_20210313.csv',
     }
 
-    img_folder = root
     ann_file = PATHS[image_set]
-    dataset = SUN360Dataset(cfg, ann_file, img_folder, 
+    dataset = SUN360Dataset(cfg, ann_file, basepath, 
                          return_masks=cfg.MODELS.MASKS, transform=make_transform())
     return dataset
 

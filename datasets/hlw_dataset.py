@@ -110,8 +110,8 @@ class HLWDataset(Dataset):
         with open(self.listpath, 'r') as csvfile:
             csvreader = csv.reader(csvfile)
             for row in csvreader:
-                img_filename  = self.basepath + row[0]
-                line_filename  = self.basepath + row[0].replace('.jpg', '_line.csv')
+                img_filename  = osp.join(self.basepath, row[0])
+                line_filename  = osp.join(self.basepath, row[0].replace('.jpg', '_line.csv'))
                 self.list_filename.append(row[0])
                 self.list_img_filename.append(img_filename)
                 self.list_line_filename.append(line_filename)
@@ -215,18 +215,15 @@ def make_transform():
         T.Normalize([0.485, 0.456, 0.406], [0.229, 0.224, 0.225])
     ]) 
 
-def build_hlw(image_set, cfg):
+def build_hlw(image_set, cfg, basepath="/data/hlw/images/"):
     assert image is not None, print("HLW dataset only support for validation")
     
-    root = '/data/public/rw/hlw/images/'
-
     PATHS = {
         "test": 'hlw_test.csv',
     }
 
-    img_folder = root
     ann_file = PATHS[image_set]
-    dataset = HLWDataset(cfg, ann_file, img_folder, 
+    dataset = HLWDataset(cfg, ann_file, basepath, 
                          return_masks=cfg.MODELS.MASKS, transform=make_transform())
     return dataset
 

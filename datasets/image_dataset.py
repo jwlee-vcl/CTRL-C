@@ -184,7 +184,7 @@ def make_transform():
         T.Normalize([0.485, 0.456, 0.406], [0.229, 0.224, 0.225])
     ]) 
 
-def build_image(image_path, cfg):
+def build_image(image_path, cfg, basepath=None):
     dataset = ImageDataset(cfg, image_path, return_masks=cfg.MODELS.MASKS, transform=make_transform())
     return dataset
 

@@ -38,8 +38,9 @@ def get_args_parser():
                         metavar="FILE",
                         help="path to config file",
                         type=str,
-                        default='config-files/gptran.yaml')
+                        default='config-files/ctrl-c.yaml')
     parser.add_argument('--dataset', default='GoogleStreetView')
+    parser.add_argument('--dataset_path', default='/data/google_street_view/manhattan/')
     parser.add_argument("--opts",
                         help="Modify config options using the command-line",
                         default=None,
@@ -142,7 +143,7 @@ def main(cfg):
         print('Unrecognized dataset: {}'.format(args.dataset))
         exit()
 
-    dataset_test = build_dataset(image_set='test', cfg=cfg)
+    dataset_test = build_dataset(image_set='test', cfg=cfg, basepath=args.dataset_path)
     sampler_test = torch.utils.data.SequentialSampler(dataset_test)
     data_loader_test = DataLoader(dataset_test, 1, sampler=sampler_test,
                                  drop_last=False, 
